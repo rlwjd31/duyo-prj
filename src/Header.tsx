@@ -1,3 +1,5 @@
+import TabNavigation from "./TabNavigation";
+
 export default function Header() {
   return (
     <header className="bg-gray-100 z-[120] flex w-full flex-col gap-y-2 px-6 pt-4">
@@ -14,7 +16,7 @@ export default function Header() {
           </h1>
         </div>
       </div>
-      {/* TODO: TabNavigation 구현 */}
+      <TabNavigation />
     </header>
   );
 }
