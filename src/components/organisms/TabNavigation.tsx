@@ -62,7 +62,7 @@ export default function TabNavigation() {
           underlineWidth={underlineWidth}
         />
       </div>
-      <HelpTabDropdown />
+      <InsertTabDropdown />
     </div>
   );
 }

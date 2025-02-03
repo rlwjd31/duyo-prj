@@ -16,7 +16,7 @@ export default function IconsLabel({
   return (
     <div
       className={cn(
-        "flex cursor-not-allowed flex-col items-center gap-y-1 rounded px-1.5 py-0.5 transition-all duration-100 hover:bg-neutral-100 active:bg-neutral-200",
+        "animate-(--animate-fade-slide) flex cursor-not-allowed flex-col items-center gap-y-1 rounded px-1.5 py-0.5 transition-all duration-100 hover:bg-neutral-100 active:bg-neutral-200",
         containerStyle
       )}
     >

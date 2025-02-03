@@ -5,7 +5,7 @@ import TabCard from "./TabCard";
 export default function HomeTabDropdown() {
   return (
     <TabCard>
-      <div className="flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
+      <div className="animate-(--animate-fade-slide) flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
         <div className="flex flex-row gap-x-0.5">
           <IconsLabel iconType="cancel" containerStyle="hover:bg-transparent" />
         </div>
@@ -14,7 +14,7 @@ export default function HomeTabDropdown() {
         </div>
       </div>
       <Divider />
-      <div className="flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
+      <div className="animate-(--animate-fade-slide) flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
         <div className="flex flex-row gap-x-0.5">
           <IconsLabel
             iconType="paste"
@@ -39,7 +39,7 @@ export default function HomeTabDropdown() {
         </div>
       </div>
       <Divider />
-      <div className="flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
+      <div className="animate-(--animate-fade-slide) flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
         <div className="flex flex-row gap-x-0.5">
           <IconsLabel
             iconType="delete"
@@ -52,7 +52,7 @@ export default function HomeTabDropdown() {
         </div>
       </div>
       <Divider />
-      <div className="flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
+      <div className="animate-(--animate-fade-slide) flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
         <div className="flex flex-row gap-x-2">
           <IconsLabel
             iconType="newSlide"

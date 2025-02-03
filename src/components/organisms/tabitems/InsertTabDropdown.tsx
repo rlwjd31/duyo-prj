@@ -5,7 +5,7 @@ import TabCard from "./TabCard";
 export default function InsertTabDropdown() {
   return (
     <TabCard>
-      <div className="flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
+      <div className="animate-(--animate-fade-slide) flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
         <div className="flex flex-row gap-x-0.5">
           <IconsLabel iconType="newSlide" label="새 슬라이드" />
         </div>
@@ -14,7 +14,7 @@ export default function InsertTabDropdown() {
         </div>
       </div>
       <Divider />
-      <div className="flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
+      <div className="animate-(--animate-fade-slide) flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
         <div className="flex flex-row gap-x-0.5">
           <IconsLabel iconType="textBox" label="텍스트 상자" />
         </div>
@@ -23,7 +23,7 @@ export default function InsertTabDropdown() {
         </div>
       </div>
       <Divider />
-      <div className="flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
+      <div className="animate-(--animate-fade-slide) flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
         <div className="flex flex-row gap-x-0.5">
           <IconsLabel iconType="picture" label="그림" />
           <IconsLabel iconType="video" label="비디오" />
@@ -33,7 +33,7 @@ export default function InsertTabDropdown() {
         </div>
       </div>
       <Divider />
-      <div className="flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
+      <div className="animate-(--animate-fade-slide) flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
         <div className="flex flex-row gap-x-0.5">
           <IconsLabel
             containerStyle="cursor-pointer"

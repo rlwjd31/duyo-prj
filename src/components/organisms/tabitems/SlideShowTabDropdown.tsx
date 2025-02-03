@@ -5,7 +5,7 @@ import TabCard from "./TabCard";
 export default function SlideShowTabDropdown() {
   return (
     <TabCard>
-      <div className="flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
+      <div className="animate-(--animate-fade-slide) flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
         <div className="flex flex-row gap-x-0.5">
           <IconsLabel iconType="fromStart" label="처음부터" />
           <IconsLabel iconType="fromNowSlide" label="현재 슬라이드부터" />
