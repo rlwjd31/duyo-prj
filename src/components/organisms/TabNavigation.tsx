@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import cn from "../../utils/cn";
 import { tabs } from "../../contants/tabContents";
 import TabDropdown from "./tabitems";
+import { useDropdownVisible } from "../../providers/DropdownVisible.provider";
 
 const BUTTON_PADDING = 8;
 
@@ -9,6 +10,8 @@ export default function TabNavigation() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [underlineWidth, setUnderlineWidth] = useState(0);
   const [underlineLeft, setUnderlineLeft] = useState(0);
+  const { toggleDropdown, showDropdown, isDropdownVisible, hideDropdown } =
+    useDropdownVisible();
 
   const tabsRef = useRef<HTMLButtonElement[]>([]);
 
@@ -39,7 +42,13 @@ export default function TabNavigation() {
                   paddingLeft: BUTTON_PADDING,
                   paddingRight: BUTTON_PADDING,
                 }}
-                onClick={() => setActiveTabIndex(idx)}
+                onClick={() => {
+                  showDropdown();
+                  setActiveTabIndex(idx);
+                }}
+                onDoubleClick={() => {
+                  toggleDropdown();
+                }}
                 ref={(el) => (tabsRef.current[idx] = el as HTMLButtonElement)}
               >
                 {content}
