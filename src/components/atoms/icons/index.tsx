@@ -14,6 +14,8 @@ import PictureIcon from "./PictureIcon";
 import VideoIcon from "./VideoIcon";
 import RectangleIcon from "./RectangleIcon";
 import CircleIcon from "./CircleIcon";
+import FromStartIcon from "./FromStartIcon";
+import FromNowSlideIcon from "./FromNowSlideIcon";
 
 export type IconType =
   | "saveSvg"
@@ -30,7 +32,9 @@ export type IconType =
   | "picture"
   | "video"
   | "rectangle"
-  | "circle";
+  | "circle"
+  | "fromStart"
+  | "fromNowSlide";
 
 export type IconProps = {
   iconType: IconType;
@@ -53,6 +57,8 @@ export default function Icon({ iconType }: IconProps) {
     video: VideoIcon,
     rectangle: RectangleIcon,
     circle: CircleIcon,
+    fromStart: FromStartIcon,
+    fromNowSlide: FromNowSlideIcon,
   };
 
   const SelectedIconComponent = iconMappedComponents[iconType];
