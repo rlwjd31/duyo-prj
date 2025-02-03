@@ -2,7 +2,7 @@ import cn from "../../utils/cn";
 import Icon, { IconProps } from "../atoms/icons";
 
 type IconsLabelProps = IconProps & {
-  label: string;
+  label?: string;
   containerStyle?: string;
   labelStyle?: string;
 };
@@ -21,14 +21,16 @@ export default function IconsLabel({
       )}
     >
       <Icon iconType={iconType} />
-      <span
-        className={cn(
-          "select-none text-[12.7px] font-medium text-neutral-600",
-          labelStyle
-        )}
-      >
-        {label}
-      </span>
+      {label && (
+        <span
+          className={cn(
+            "select-none text-[12.7px] font-medium text-neutral-600",
+            labelStyle
+          )}
+        >
+          {label}
+        </span>
+      )}
     </div>
   );
 }
