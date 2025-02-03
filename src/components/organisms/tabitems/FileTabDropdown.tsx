@@ -1,3 +1,4 @@
+import Divider from "../../atoms/Divider";
 import IconsLabel from "../../molecules/IconsLabel";
 
 export default function FileTabDropdown() {
@@ -11,7 +12,12 @@ export default function FileTabDropdown() {
         </div>
         <div className="select-none text-xs text-neutral-600">저장</div>
       </div>
-      <div className="h-full w-px bg-neutral-300"></div>
+      <Divider />
+      <div className="flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
+        <div className="flex flex-row gap-x-0.5">
+          <IconsLabel iconType="cancel" label="실행취소" />
+        </div>
+      </div>
     </div>
   );
 }
