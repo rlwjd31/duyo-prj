@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import cn from "./utils/cn";
+import cn from "../utils/cn";
+import FileTabContent from "./organisms/tabitems/FileTabContent";
 
 const tabs = [
   { id: "tab1", content: "파일" },
@@ -27,7 +28,7 @@ export default function TabNavigation() {
   }, [activeTabIndex]);
 
   return (
-    <div>
+    <div className="relative">
       <div className="relative flex flex-row items-center justify-start gap-x-2">
         {tabs &&
           tabs.length > 0 &&
@@ -52,13 +53,28 @@ export default function TabNavigation() {
               </button>
             );
           })}
-        <div className="absolute bottom-0 left-0 right-0 mx-2">
-          <span
-            className="absolute bottom-0 left-0 block h-0.5 bg-neutral-700 transition-all duration-250 ease-in"
-            style={{ left: underlineLeft, width: underlineWidth }}
-          />
-        </div>
+        <TabUnderLine
+          underlineLeft={underlineLeft}
+          underlineWidth={underlineWidth}
+        />
       </div>
+      <FileTabContent />
+    </div>
+  );
+}
+
+type TabUnderLineProps = {
+  underlineLeft: number;
+  underlineWidth: number;
+};
+
+function TabUnderLine({ underlineLeft, underlineWidth }: TabUnderLineProps) {
+  return (
+    <div className="absolute bottom-0 left-0 right-0 mx-2">
+      <span
+        className="absolute bottom-0 left-0 block h-0.5 bg-neutral-700 transition-all duration-250 ease-in"
+        style={{ left: underlineLeft, width: underlineWidth }}
+      />
     </div>
   );
 }
