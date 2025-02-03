@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import cn from "../utils/cn";
-import FileTabContent from "./organisms/tabitems/FileTabDropdown";
-import HomeTabDropdown from "./organisms/tabitems/HomeTabDropdown";
+import cn from "../../utils/cn";
+import FileTabDropdown from "./tabitems/FileTabDropdown";
+import HomeTabDropdown from "./tabitems/HomeTabDropdown";
+import InsertTabDropdown from "./tabitems/InsertTabDropdown";
 
 const tabs = [
   { id: "tab1", content: "파일" },
@@ -59,7 +60,7 @@ export default function TabNavigation() {
           underlineWidth={underlineWidth}
         />
       </div>
-      <HomeTabDropdown />
+      <InsertTabDropdown />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import TabNavigation from "./TabNavigation";
+import TabNavigation from "./organisms/TabNavigation";
 
 export default function Header() {
   return (

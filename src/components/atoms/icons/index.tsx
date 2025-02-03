@@ -1,4 +1,4 @@
-import { FC, ReactElement } from "react";
+import { FC } from "react";
 import CancelIcon from "./Cancel";
 import CopyFileIcon from "./CopyFileIcon";
 import CopyTextIcon from "./CopyTextIcon";
@@ -9,6 +9,11 @@ import SavePng from "./savePng";
 import SaveSvg from "./saveSvg";
 import TemplateIcon from "./TemplateIcon";
 import NewSlideIcon from "./NewSlideIcon";
+import TextBoxIcon from "./TextBoxIcon";
+import PictureIcon from "./PictureIcon";
+import VideoIcon from "./VideoIcon";
+import RectangleIcon from "./RectangleIcon";
+import CircleIcon from "./CircleIcon";
 
 export type IconType =
   | "saveSvg"
@@ -20,7 +25,12 @@ export type IconType =
   | "delete"
   | "copytext"
   | "template"
-  | "newSlide";
+  | "newSlide"
+  | "textBox"
+  | "picture"
+  | "video"
+  | "rectangle"
+  | "circle";
 
 export type IconProps = {
   iconType: IconType;
@@ -38,6 +48,11 @@ export default function Icon({ iconType }: IconProps) {
     copytext: CopyTextIcon,
     template: TemplateIcon,
     newSlide: NewSlideIcon,
+    textBox: TextBoxIcon,
+    picture: PictureIcon,
+    video: VideoIcon,
+    rectangle: RectangleIcon,
+    circle: CircleIcon,
   };
 
   const SelectedIconComponent = iconMappedComponents[iconType];
