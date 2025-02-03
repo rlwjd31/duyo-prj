@@ -1,18 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import cn from "../../utils/cn";
-import FileTabDropdown from "./tabitems/FileTabDropdown";
-import HomeTabDropdown from "./tabitems/HomeTabDropdown";
-import InsertTabDropdown from "./tabitems/InsertTabDropdown";
-import SlideShowTabDropdown from "./tabitems/SlideShowTabDropdown";
-import HelpTabDropdown from "./tabitems/HelpTabDropdown";
-
-const tabs = [
-  { id: "tab1", content: "파일" },
-  { id: "tab2", content: "홈" },
-  { id: "tab3", content: "삽입" },
-  { id: "tab4", content: "슬라이드쇼" },
-  { id: "tab5", content: "도움말" },
-];
+import { tabs } from "../../contants/tabContents";
+import TabDropdown from "./tabitems";
 
 const BUTTON_PADDING = 8;
 
@@ -62,7 +51,7 @@ export default function TabNavigation() {
           underlineWidth={underlineWidth}
         />
       </div>
-      <InsertTabDropdown />
+      <TabDropdown tabContent={tabs[activeTabIndex].content} />
     </div>
   );
 }
@@ -76,7 +65,7 @@ function TabUnderLine({ underlineLeft, underlineWidth }: TabUnderLineProps) {
   return (
     <div className="absolute bottom-0 left-0 right-0 mx-2">
       <span
-        className="absolute bottom-0 left-0 block h-0.5 bg-neutral-700 transition-all duration-250 ease-in"
+        className="absolute bottom-0 left-0 block h-0.5 bg-neutral-700 transition-all duration-250 ease-out"
         style={{ left: underlineLeft, width: underlineWidth }}
       />
     </div>
