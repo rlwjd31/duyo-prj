@@ -4,6 +4,7 @@ import FileTabDropdown from "./tabitems/FileTabDropdown";
 import HomeTabDropdown from "./tabitems/HomeTabDropdown";
 import InsertTabDropdown from "./tabitems/InsertTabDropdown";
 import SlideShowTabDropdown from "./tabitems/SlideShowTabDropdown";
+import HelpTabDropdown from "./tabitems/HelpTabDropdown";
 
 const tabs = [
   { id: "tab1", content: "파일" },
@@ -61,7 +62,7 @@ export default function TabNavigation() {
           underlineWidth={underlineWidth}
         />
       </div>
-      <SlideShowTabDropdown />
+      <HelpTabDropdown />
     </div>
   );
 }
