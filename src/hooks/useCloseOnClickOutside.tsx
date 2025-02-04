@@ -6,13 +6,7 @@ const useCloseOnClickOutside = (
 ) => {
   useEffect(() => {
     const onClickOutsideClose = ({ target }: MouseEvent) => {
-      console.log("ref.current", ref.current);
-      console.log(
-        "ref.current.contains(target as Node)",
-        !ref.current!.contains(target as Node)
-      );
       if (ref.current && !ref.current.contains(target as Node)) {
-        console.log("콜백 실행됨?");
         callback();
       }
     };
