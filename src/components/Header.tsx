@@ -2,7 +2,7 @@ import TabNavigation from "./organisms/TabNavigation";
 
 export default function Header() {
   return (
-    <header className="bg-gray-100 z-[120] flex w-full flex-col gap-y-2 px-6 pt-4">
+    <header className="fixed bg-gray-100 z-[120] flex w-full flex-col gap-y-2 px-6 pt-4">
       <div className="flex w-full items-center justify-start gap-x-3 py-0.5">
         <div className="left-0 flex items-center justify-start gap-x-3">
           <div className="flex size-7 items-center justify-center rounded-md bg-neutral-700 text-base font-bold text-neutral-50 transition-all duration-100 ease-out hover:bg-neutral-800 active:scale-90 active:bg-neutral-800 cursor-pointer select-none">

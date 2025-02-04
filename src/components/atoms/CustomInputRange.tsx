@@ -11,7 +11,7 @@ export default function CustomInputRange() {
         max="100"
         value={value}
         onChange={(e) => setValue(+e.target.value)}
-        className={`w-64 h-1 rounded-lg appearance-none cursor-pointer bg-transparent
+        className={`w-full h-1 rounded-lg appearance-none cursor-pointer bg-transparent
                    [&::-webkit-slider-thumb]:appearance-none
                    [&::-webkit-slider-thumb]:w-3
                    [&::-webkit-slider-thumb]:h-3
