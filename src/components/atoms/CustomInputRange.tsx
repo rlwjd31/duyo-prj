@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
-export default function CustomInputRange() {
-  const [value, setValue] = useState(50); // 기본 값 설정
+type CustomInputRangeProps = {
+  value: number;
+  setValue: Dispatch<SetStateAction<number>>;
+};
 
+export default function CustomInputRange({
+  value,
+  setValue,
+}: CustomInputRangeProps) {
   return (
     <div className="flex w-24 items-center justify-center">
       <input
@@ -10,6 +16,7 @@ export default function CustomInputRange() {
         min="0"
         max="100"
         value={value}
+        step={1}
         onChange={(e) => setValue(+e.target.value)}
         className={`w-full h-1 rounded-lg appearance-none cursor-pointer bg-transparent
                    [&::-webkit-slider-thumb]:appearance-none
