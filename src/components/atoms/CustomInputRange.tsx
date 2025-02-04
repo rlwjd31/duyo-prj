@@ -17,7 +17,9 @@ export default function CustomInputRange({
         max="100"
         value={value}
         step={1}
-        onChange={(e) => setValue(+e.target.value)}
+        onChange={(e) => {
+          setValue(Math.max(+(+e.target.value / 100).toFixed(2), 0.1));
+        }}
         className={`w-full h-1 rounded-lg appearance-none cursor-pointer bg-transparent
                    [&::-webkit-slider-thumb]:appearance-none
                    [&::-webkit-slider-thumb]:w-3

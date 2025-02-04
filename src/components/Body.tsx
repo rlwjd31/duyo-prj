@@ -41,7 +41,7 @@ export default function Body() {
     <main className="size-full flex justify-center items-center bg-gray-100">
       <div className="flex h-full w-full flex-col items-center justify-center">
         <div
-          className="duration-100 transition-all ease-out shadow-(--card-shadow) min-h-[900px] min-w-[1600px] w-[800px] h-[600px] bg-white border-[0.35px] rounded-lg border-neutral-300 transform-translate-50-50 transform-origin-center"
+          className="duration-200 transition-all ease-out shadow-(--card-shadow) min-h-[900px] min-w-[1600px] w-[800px] h-[600px] bg-white border-[0.35px] rounded-lg border-neutral-300 transform-translate-50-50 transform-origin-center"
           style={{
             transform: `scale(${currentScale})`,
           }}
