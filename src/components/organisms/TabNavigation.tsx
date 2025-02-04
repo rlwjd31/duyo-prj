@@ -10,8 +10,13 @@ export default function TabNavigation() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [underlineWidth, setUnderlineWidth] = useState(0);
   const [underlineLeft, setUnderlineLeft] = useState(0);
-  const { toggleDropdown, showDropdown, isDropdownVisible, hideDropdown } =
-    useDropdownVisible();
+  const {
+    toggleDropdown,
+    isDropdownFixed,
+    toggleDropdownFixed,
+    showDropdown,
+    isDropdownVisible,
+  } = useDropdownVisible();
 
   const tabsRef = useRef<HTMLButtonElement[]>([]);
 
@@ -42,12 +47,28 @@ export default function TabNavigation() {
                   paddingLeft: BUTTON_PADDING,
                   paddingRight: BUTTON_PADDING,
                 }}
-                onClick={() => {
-                  showDropdown();
+                onClick={(e) => {
+                  const isDoubleClicked = e.detail === 2;
                   setActiveTabIndex(idx);
-                }}
-                onDoubleClick={() => {
-                  toggleDropdown();
+
+                  if (isDoubleClicked) {
+                    // double click까지 총 3번의 event가 발생하므로 한 번을 더 토글시켜 원하는 dropdown visible상태를 유지
+                    toggleDropdown();
+                    toggleDropdownFixed();
+                  }
+
+                  // 리본 고정 모드일 때는 dropdown visible toggle을 하지 않음.
+                  // 이전 활성화된 tabIndex와 이전 tabIndex가 같다면 toggleDropdown 실행
+                  // 리본 고정이 해제된 상태에서는 다른 탭을 클릭할 시 toggoleDropdown으로 인해 visible값이 true -> false -> true -> false와 같은 현상이 일어남.
+                  if (!isDropdownFixed)
+                    return activeTabIndex === idx
+                      ? toggleDropdown()
+                      : showDropdown();
+
+                  // isDropdownFixed가 true일 때는 dropdown visible toggle을 하지 않음.
+                  // 처음에 isDropdownFixed = true & isDropdownVisible = true이며,
+                  // 이전 isDropdownVisible 상태가 true이기 때문에 총 두 번이 일어나 dropdown이 사라지지 않아 !isDropdownVisible일 때만 dropdown을 보여줌
+                  if (!isDropdownVisible) showDropdown();
                 }}
                 ref={(el) => (tabsRef.current[idx] = el as HTMLButtonElement)}
               >
