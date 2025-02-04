@@ -3,10 +3,12 @@ import cn from "../../utils/cn";
 import { tabs } from "../../contants/tabContents";
 import TabDropdown from "./tabitems";
 import { useDropdownVisible } from "../../providers/DropdownVisible.provider";
+import { useScale } from "../../providers/Scale.provider";
 
 const BUTTON_PADDING = 8;
 
 export default function TabNavigation() {
+  const { setCurrentScale } = useScale();
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [underlineWidth, setUnderlineWidth] = useState(0);
   const [underlineLeft, setUnderlineLeft] = useState(0);
@@ -29,7 +31,7 @@ export default function TabNavigation() {
   }, [activeTabIndex]);
 
   return (
-    <div className="relative">
+    <div className="relative flex flex-col">
       <div className="relative flex flex-row items-center justify-start gap-x-2">
         {tabs &&
           tabs.length > 0 &&
@@ -55,6 +57,7 @@ export default function TabNavigation() {
                     // double click까지 총 3번의 event가 발생하므로 한 번을 더 토글시켜 원하는 dropdown visible상태를 유지
                     toggleDropdown();
                     toggleDropdownFixed();
+                    setCurrentScale(isDropdownFixed ? 1 : 0.93);
                   }
 
                   // 리본 고정 모드일 때는 dropdown visible toggle을 하지 않음.

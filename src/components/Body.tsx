@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Circle, { CircleProps } from "./atoms/Circle";
 import Rectangle, { RectangleProps } from "./atoms/Rectangle";
 import { useScale } from "../providers/Scale.provider";
+import { useDropdownVisible } from "../providers/DropdownVisible.provider";
 
 type Circle = CircleProps & {
   id: number;
@@ -37,10 +38,10 @@ export default function Body() {
   }, []);
 
   return (
-    <main className="h-screen flex justify-center items-center bg-gray-100 ">
-      <div className="absolute flex h-full w-full flex-col items-center justify-center overflow-auto">
+    <main className="size-full flex justify-center items-center bg-gray-100">
+      <div className="flex h-full w-full flex-col items-center justify-center">
         <div
-          className="absolute shadow-(--card-shadow) min-h-[900px] min-w-[1600px] w-[800px] h-[600px] bg-white border-[0.35px] rounded-lg border-neutral-300 transform-translate-50-50 transform-origin-center"
+          className="duration-100 transition-all ease-out shadow-(--card-shadow) min-h-[900px] min-w-[1600px] w-[800px] h-[600px] bg-white border-[0.35px] rounded-lg border-neutral-300 transform-translate-50-50 transform-origin-center"
           style={{
             transform: `scale(${currentScale})`,
           }}

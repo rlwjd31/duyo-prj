@@ -8,7 +8,7 @@ export default function App() {
   return (
     <DropdownProvider>
       <ScaleProvider>
-        <div className="relative">
+        <div className="relative flex flex-col h-screen">
           <Header />
           <Body />
           <Footer />
