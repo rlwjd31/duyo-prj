@@ -16,6 +16,8 @@ import RectangleIcon from "./RectangleIcon";
 import CircleIcon from "./CircleIcon";
 import FromStartIcon from "./FromStartIcon";
 import FromNowSlideIcon from "./FromNowSlideIcon";
+import MinusIcon from "./MinusIcon";
+import PlusIcon from "./PlusIcon";
 
 export type IconType =
   | "saveSvg"
@@ -34,7 +36,9 @@ export type IconType =
   | "rectangle"
   | "circle"
   | "fromStart"
-  | "fromNowSlide";
+  | "fromNowSlide"
+  | "minus"
+  | "plus";
 
 export type IconProps = {
   iconType: IconType;
@@ -59,6 +63,8 @@ export default function Icon({ iconType }: IconProps) {
     circle: CircleIcon,
     fromStart: FromStartIcon,
     fromNowSlide: FromNowSlideIcon,
+    minus: MinusIcon,
+    plus: PlusIcon,
   };
 
   const SelectedIconComponent = iconMappedComponents[iconType];
