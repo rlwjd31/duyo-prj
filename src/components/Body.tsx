@@ -27,23 +27,28 @@ export default function Body() {
   }, [shapes, setCurrentScale]);
 
   useEffect(() => {
-    // @FIXME: scale에 관계없이 마우스 이동에 따라 움직이도록 수정 필요
     const onMouseMoveHandler = (e: MouseEvent) => {
       e.preventDefault();
       if (draggingPolygon === null) return;
+
+      const deltaX = (e.clientX - offsetRef.current.x) / currentScale;
+      const deltaY = (e.clientY - offsetRef.current.y) / currentScale;
 
       setShapes((prev) =>
         prev.map((shape) =>
           shape.polygonID === draggingPolygon
             ? {
                 ...shape,
-                x: e.clientX - offsetRef.current.x,
-                y: e.clientY - offsetRef.current.y,
+                x: shape.x + deltaX,
+                y: shape.y + deltaY,
               }
             : shape
         )
       );
-      // console.log("mouse move x", e.clientX, "mouse move y", e.clientY);
+      offsetRef.current = {
+        x: e.clientX,
+        y: e.clientY,
+      };
     };
 
     const onMouseUpHandler = (e: MouseEvent) => {
@@ -55,7 +60,7 @@ export default function Body() {
 
     window.addEventListener("mousemove", onMouseMoveHandler);
     window.addEventListener("mouseup", onMouseUpHandler);
-  }, [draggingPolygon, setShapes]);
+  }, [draggingPolygon, setShapes, currentScale]);
 
   return (
     <main className="size-full flex justify-center items-center bg-gray-100">
@@ -74,10 +79,9 @@ export default function Body() {
                   e.preventDefault();
                   setDraggingPolygon(shape.polygonID);
                   offsetRef.current = {
-                    x: e.clientX - shape.x,
-                    y: e.clientY - shape.y,
+                    x: e.clientX,
+                    y: e.clientY,
                   };
-                  // console.log(e.clientX, e.clientY);
                 }}
               />
             ) : (
@@ -87,10 +91,9 @@ export default function Body() {
                   e.preventDefault();
                   setDraggingPolygon(shape.polygonID);
                   offsetRef.current = {
-                    x: e.clientX - shape.x,
-                    y: e.clientY - shape.y,
+                    x: e.clientX,
+                    y: e.clientY,
                   };
-                  // console.log(e.clientX, e.clientY);
                 }}
               />
             )
