@@ -13,7 +13,7 @@ type DropdownContextType = {
   setShapes: Dispatch<SetStateAction<Shape[]>>;
 };
 
-type Shape = CircleType | RectangleType;
+export type Shape = CircleType | RectangleType;
 const ShapesProviderContext = createContext<DropdownContextType | undefined>(
   undefined
 );

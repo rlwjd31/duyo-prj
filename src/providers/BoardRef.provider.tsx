@@ -20,4 +20,4 @@ export const BoardRefProvider = ({
   );
 };
 
-export const useBoard = () => useContext(BoardRefContext);
+export const useBoardRef = () => useContext(BoardRefContext);

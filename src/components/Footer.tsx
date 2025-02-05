@@ -7,7 +7,7 @@ export default function Footer() {
   const { currentScale, setCurrentScale } = useScale();
 
   return (
-    <footer className="fixed bottom-0 z-20 justify-end flex h-6 w-full flex-row bg-neutral-100 items-center border-t border-neutral-300 px-4">
+    <footer className="z-20 justify-end flex h-6 w-full flex-row bg-neutral-100 items-center border-t border-neutral-300 px-4">
       <div className="flex h-full flex-row items-center gap-x-2">
         <div className="flex flex-row gap-x-1.5">
           <button
