@@ -4,6 +4,7 @@ import Rectangle from "./atoms/Rectangle";
 import { useScale } from "../providers/Scale.provider";
 import { useShapes } from "../providers/Shapes.provider";
 import { MAX_SCALE, MIN_SCALE } from "../contants/scaleRange";
+import html2canvas from "html2canvas";
 
 export default function Body() {
   const { currentScale, setCurrentScale } = useScale();
@@ -116,6 +117,52 @@ export default function Body() {
     document.body.removeChild(link);
   };
 
+  const handleExportPNG = async () => {
+    if (!boardRef.current) return;
+
+    try {
+      const container = boardRef.current;
+      const canvas = await html2canvas(container, {
+        backgroundColor: null,
+        useCORS: true,
+        scale: 2,
+        logging: true,
+      });
+      console.log("실행됨");
+
+      console.log("canvas", canvas);
+
+      const { width, height, left, top } = container.getBoundingClientRect();
+
+      const croppedCanvas = document.createElement("canvas");
+      croppedCanvas.width = width * 2;
+      croppedCanvas.height = height * 2;
+      document.body.appendChild(croppedCanvas);
+      const ctx = croppedCanvas.getContext("2d")!;
+
+      ctx.drawImage(
+        canvas,
+        left * 2,
+        top * 2,
+        width * 2,
+        height * 2,
+        0,
+        0,
+        width * 2,
+        height * 2
+      );
+
+      const image = croppedCanvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = "paper.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Export Error:", error);
+    }
+  };
   return (
     <main className="size-full flex justify-center items-center bg-gray-100">
       <div className="flex h-full w-full flex-col items-center justify-center">
@@ -155,9 +202,20 @@ export default function Body() {
           )}
         </div>
       </div>
-      <button className="size-32 bg-black text-white" onClick={handleExportSVG}>
-        svg저장
-      </button>
+      <div className="flex flex-col gap-4">
+        <button
+          className="size-32 bg-black text-white cursor-pointer"
+          onClick={handleExportSVG}
+        >
+          svg저장
+        </button>
+        <button
+          className="size-32 bg-black text-white cursor-pointer"
+          onClick={handleExportPNG}
+        >
+          png저장
+        </button>
+      </div>
     </main>
   );
 }
