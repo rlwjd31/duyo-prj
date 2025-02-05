@@ -1,10 +1,12 @@
-export type CircleProps = {
+import { ComponentProps } from "react";
+
+export type CircleProps = ComponentProps<'div'> & {
   x: number;
   y: number;
   size: number;
 };
 
-export default function Circle({ x, y, size }: CircleProps) {
+export default function Circle({ x, y, size, ...others }: CircleProps) {
   return (
     <div
       className="absolute rounded-full cursor-pointer border-[3px]"
@@ -18,6 +20,7 @@ export default function Circle({ x, y, size }: CircleProps) {
         borderRadius: "50%",
         borderColor: "black",
       }}
+      {...others}
     />
   );
 }

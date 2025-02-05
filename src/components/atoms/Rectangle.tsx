@@ -1,11 +1,19 @@
-export type RectangleProps = {
+import { ComponentProps } from "react";
+
+export type RectangleProps = ComponentProps<"div"> & {
   x: number;
   y: number;
   width: number;
   height: number;
 };
 
-export default function Rectangle({ x, y, width, height }: RectangleProps) {
+export default function Rectangle({
+  x,
+  y,
+  width,
+  height,
+  ...others
+}: RectangleProps) {
   return (
     <div
       className="absolute cursor-pointer border-[3px]"
@@ -17,6 +25,7 @@ export default function Rectangle({ x, y, width, height }: RectangleProps) {
         background: "red",
         borderColor: "black",
       }}
+      {...others}
     />
   );
 }
