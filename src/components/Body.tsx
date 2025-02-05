@@ -67,7 +67,7 @@ export default function Body() {
   }, [draggingPolygon, setShapes, currentScale]);
 
   return (
-    <main className="size-full flex justify-center items-center bg-gray-100">
+    <main className="size-full flex justify-center items-center bg-gray-100 overflow-hidden">
       <div className="flex h-full w-full flex-col items-center justify-center">
         <div
           className="duration-200 transition-all ease-out shadow-(--card-shadow) min-h-[900px] min-w-[1600px] w-[800px] h-[600px] bg-white border-[0.35px] rounded-lg border-neutral-300 transform-translate-50-50 transform-origin-center"
@@ -104,20 +104,6 @@ export default function Body() {
             )
           )}
         </div>
-      </div>
-      <div className="flex flex-col gap-4">
-        <button
-          className="size-32 bg-black text-white cursor-pointer"
-          onClick={() => saveToSVG(boardRef!, shapes)}
-        >
-          svg저장
-        </button>
-        <button
-          className="size-32 bg-black text-white cursor-pointer"
-          onClick={() => saveToPNG(boardRef!)}
-        >
-          png저장
-        </button>
       </div>
     </main>
   );
