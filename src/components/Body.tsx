@@ -117,6 +117,7 @@ export default function Body() {
     document.body.removeChild(link);
   };
 
+  // @FIXME: html2canvas를 사용하면 브라우저 또는 CSS 파서가 oklch() 색상 함수를 지원하지 않기 때문에 canvas 생성 시 오류 발생함
   const handleExportPNG = async () => {
     if (!boardRef.current) return;
 
