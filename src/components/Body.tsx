@@ -27,6 +27,7 @@ export default function Body() {
   }, [shapes, setCurrentScale]);
 
   useEffect(() => {
+    // @FIXME: scale에 관계없이 마우스 이동에 따라 움직이도록 수정 필요
     const onMouseMoveHandler = (e: MouseEvent) => {
       e.preventDefault();
       if (draggingPolygon === null) return;
