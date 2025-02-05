@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header
       ref={dropDownRef}
-      className="bg-gray-100 z-[120] flex w-full flex-col gap-y-2 px-6 pt-4"
+      className="bg-gray-100 z-[120] flex w-full flex-col gap-y-2 px-6 pt-4 pb-3"
     >
       <div className="flex w-full items-center justify-start gap-x-3 py-0.5">
         <div className="left-0 flex items-center justify-start gap-x-3">
