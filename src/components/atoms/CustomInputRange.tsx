@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { MIN_SCALE } from "../../contants/scaleRange";
 
 type CustomInputRangeProps = {
   value: number;
@@ -18,7 +19,7 @@ export default function CustomInputRange({
         value={value}
         step={1}
         onChange={(e) => {
-          setValue(Math.max(+(+e.target.value / 100).toFixed(2), 0.1));
+          setValue(Math.max(+(+e.target.value / 100).toFixed(2), MIN_SCALE));
         }}
         className={`w-full h-1 rounded-lg appearance-none cursor-pointer bg-transparent
                    [&::-webkit-slider-thumb]:appearance-none

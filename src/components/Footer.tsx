@@ -1,3 +1,4 @@
+import { MAX_SCALE, MIN_SCALE } from "../contants/scaleRange";
 import { useScale } from "../providers/Scale.provider";
 import CustomInputRange from "./atoms/CustomInputRange";
 import Icon from "./atoms/icons";
@@ -13,7 +14,7 @@ export default function Footer() {
             className="h-full px-3 outline-none hover:bg-neutral-200 cursor-pointer"
             onClick={() =>
               setCurrentScale((prev) =>
-                prev - 0.02 <= 0.1 ? 0.1 : prev - 0.02
+                prev - 0.02 <= MIN_SCALE ? MIN_SCALE : prev - 0.02
               )
             }
           >
@@ -26,7 +27,7 @@ export default function Footer() {
           <button
             className="h-full px-3 outline-none hover:bg-neutral-200 cursor-pointer"
             onClick={() =>
-              setCurrentScale((prev) => (prev + 0.02 >= 1 ? 1 : prev + 0.02))
+              setCurrentScale((prev) => (prev + 0.02 >= MAX_SCALE ? MAX_SCALE : prev + 0.02))
             }
           >
             <Icon iconType="plus" />

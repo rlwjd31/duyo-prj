@@ -3,7 +3,7 @@ import Circle from "./atoms/Circle";
 import Rectangle from "./atoms/Rectangle";
 import { useScale } from "../providers/Scale.provider";
 import { useShapes } from "../providers/Shapes.provider";
-import { randomColors } from "../contants/colors";
+import { MAX_SCALE, MIN_SCALE } from "../contants/scaleRange";
 
 export default function Body() {
   const { currentScale, setCurrentScale } = useScale();
@@ -17,7 +17,7 @@ export default function Body() {
       if (event.metaKey || event.ctrlKey) {
         event.preventDefault();
         setCurrentScale((prev) =>
-          Math.min(Math.max(prev - event.deltaY * 0.001, 0.1), 1)
+          Math.min(Math.max(prev - event.deltaY * 0.001, MIN_SCALE), MAX_SCALE)
         );
       }
     };
