@@ -1,27 +1,15 @@
 import { useState, useEffect, useRef } from "react";
-import Circle, { CircleProps } from "./atoms/Circle";
-import Rectangle, { RectangleProps } from "./atoms/Rectangle";
+import Circle from "./atoms/Circle";
+import Rectangle from "./atoms/Rectangle";
 import { useScale } from "../providers/Scale.provider";
-
-type Circle = Pick<CircleProps, "x" | "y" | "size"> & {
-  id: number;
-  type: "circle";
-};
-
-type Rectangle = Pick<RectangleProps, "x" | "y" | "width" | "height"> & {
-  id: number;
-  type: "rectangle";
-};
-
-type Shape = Circle | Rectangle;
+import { useShapes } from "../providers/Shapes.provider";
+import { randomColors } from "../contants/colors";
 
 export default function Body() {
   const { currentScale, setCurrentScale } = useScale();
   const [draggingPolygon, setDraggingPolygon] = useState<number | null>(null);
-  const [shapes, setShapes] = useState<Shape[]>([
-    { id: 1, type: "circle", x: -100, y: 100, size: 50 },
-    { id: 2, type: "rectangle", x: 200, y: 150, width: 100, height: 60 },
-  ]);
+  const { shapes, setShapes } = useShapes();
+
   const offsetRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -36,7 +24,7 @@ export default function Body() {
 
     window.addEventListener("wheel", handleWheel, { passive: false });
     return () => window.removeEventListener("wheel", handleWheel);
-  }, [shapes]);
+  }, [shapes, setCurrentScale]);
 
   useEffect(() => {
     const onMouseMoveHandler = (e: MouseEvent) => {
@@ -45,7 +33,7 @@ export default function Body() {
 
       setShapes((prev) =>
         prev.map((shape) =>
-          shape.id === draggingPolygon
+          shape.polygonID === draggingPolygon
             ? {
                 ...shape,
                 x: e.clientX - offsetRef.current.x,
@@ -54,7 +42,7 @@ export default function Body() {
             : shape
         )
       );
-      console.log("mouse move x", e.clientX, "mouse move y", e.clientY);
+      // console.log("mouse move x", e.clientX, "mouse move y", e.clientY);
     };
 
     const onMouseUpHandler = (e: MouseEvent) => {
@@ -66,7 +54,7 @@ export default function Body() {
 
     window.addEventListener("mousemove", onMouseMoveHandler);
     window.addEventListener("mouseup", onMouseUpHandler);
-  }, [draggingPolygon]);
+  }, [draggingPolygon, setShapes]);
 
   return (
     <main className="size-full flex justify-center items-center bg-gray-100">
@@ -78,38 +66,30 @@ export default function Body() {
           }}
         >
           {shapes.map((shape) =>
-            // TODO: circle, rectangle의 색상 임의의 색상으로 변경
             shape.type === "circle" ? (
               <Circle
-                key={shape.id}
-                x={shape.x}
-                y={shape.y}
-                size={shape.size}
+                {...shape}
                 onMouseDown={(e) => {
                   e.preventDefault();
-                  setDraggingPolygon(shape.id);
+                  setDraggingPolygon(shape.polygonID);
                   offsetRef.current = {
                     x: e.clientX - shape.x,
                     y: e.clientY - shape.y,
                   };
-                  console.log(e.clientX, e.clientY);
+                  // console.log(e.clientX, e.clientY);
                 }}
               />
             ) : (
               <Rectangle
-                key={shape.id}
-                x={shape.x}
-                y={shape.y}
-                width={shape.width}
-                height={shape.height}
+                {...shape}
                 onMouseDown={(e) => {
                   e.preventDefault();
-                  setDraggingPolygon(shape.id);
+                  setDraggingPolygon(shape.polygonID);
                   offsetRef.current = {
                     x: e.clientX - shape.x,
                     y: e.clientY - shape.y,
                   };
-                  console.log(e.clientX, e.clientY);
+                  // console.log(e.clientX, e.clientY);
                 }}
               />
             )
@@ -119,13 +99,3 @@ export default function Body() {
     </main>
   );
 }
-
-// export const pickerColors = [
-//   "#FF8686",
-//   "#FFC56F",
-//   "#7AE698",
-//   "#5EDFFC",
-//   "#6979F8",
-//   "#CB88FF",
-//   "#FF88DE",
-// ];

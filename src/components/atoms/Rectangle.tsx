@@ -1,17 +1,15 @@
 import { ComponentProps } from "react";
+import { RectangleType } from "../../types/polygon";
 
-export type RectangleProps = ComponentProps<"div"> & {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-};
+export type RectangleProps = ComponentProps<"div"> & RectangleType;
 
 export default function Rectangle({
   x,
   y,
   width,
   height,
+  backgroundColor,
+  borderColor,
   ...others
 }: RectangleProps) {
   return (
@@ -22,8 +20,8 @@ export default function Rectangle({
         top: `${y}px`,
         width: `${width}px`,
         height: `${height}px`,
-        background: "red",
-        borderColor: "black",
+        backgroundColor: backgroundColor,
+        borderColor: borderColor,
       }}
       {...others}
     />

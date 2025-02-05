@@ -1,8 +1,11 @@
+import useGenerateRandomPolygon from "../../../hooks/generateRandomPolygon";
 import Divider from "../../atoms/Divider";
 import IconsLabel from "../../molecules/IconsLabel";
 import TabCard from "./TabCard";
 
 export default function InsertTabDropdown() {
+  const { generateRandomCircle, generateRandomRectangle } =
+    useGenerateRandomPolygon();
   return (
     <TabCard>
       <div className="animate-(--animate-fade-slide) flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
@@ -35,16 +38,20 @@ export default function InsertTabDropdown() {
       <Divider />
       <div className="animate-(--animate-fade-slide) flex h-full w-fit px-0.5 flex-col items-center justify-between opacity-100 transform-none">
         <div className="flex flex-row gap-x-0.5">
-          <IconsLabel
-            containerStyle="cursor-pointer"
-            iconType="rectangle"
-            label="사각형"
-          />
-          <IconsLabel
-            containerStyle="cursor-pointer"
-            iconType="circle"
-            label="원"
-          />
+          <button onClick={generateRandomRectangle}>
+            <IconsLabel
+              containerStyle="cursor-pointer"
+              iconType="rectangle"
+              label="사각형"
+            />
+          </button>
+          <button onClick={generateRandomCircle}>
+            <IconsLabel
+              containerStyle="cursor-pointer"
+              iconType="circle"
+              label="원"
+            />
+          </button>
         </div>
         <div className="select-none text-xs text-neutral-600 opacity-90">
           도형

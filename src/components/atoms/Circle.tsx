@@ -1,24 +1,26 @@
 import { ComponentProps } from "react";
+import { CircleType } from "../../types/polygon";
 
-export type CircleProps = ComponentProps<'div'> & {
-  x: number;
-  y: number;
-  size: number;
-};
+export type CircleProps = ComponentProps<"div"> & CircleType;
 
-export default function Circle({ x, y, size, ...others }: CircleProps) {
+export default function Circle({
+  x,
+  y,
+  size,
+  backgroundColor,
+  borderColor,
+  ...others
+}: CircleProps) {
   return (
     <div
       className="absolute rounded-full cursor-pointer border-[3px]"
       style={{
-        position: "absolute",
         left: `${x}px`,
         top: `${y}px`,
         width: `${size}px`,
         height: `${size}px`,
-        background: "blue",
-        borderRadius: "50%",
-        borderColor: "black",
+        backgroundColor,
+        borderColor,
       }}
       {...others}
     />
