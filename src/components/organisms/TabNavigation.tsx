@@ -57,7 +57,7 @@ export default function TabNavigation() {
                     // double click까지 총 3번의 event가 발생하므로 한 번을 더 토글시켜 원하는 dropdown visible상태를 유지
                     toggleDropdown();
                     toggleDropdownFixed();
-                    setCurrentScale(isDropdownFixed ? 1 : 0.93);
+                    setCurrentScale(isDropdownFixed ? 1 : 0.84);
                   }
 
                   // 리본 고정 모드일 때는 dropdown visible toggle을 하지 않음.

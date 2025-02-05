@@ -9,6 +9,7 @@ export default function Body() {
   const { currentScale, setCurrentScale } = useScale();
   const [draggingPolygon, setDraggingPolygon] = useState<number | null>(null);
   const { shapes, setShapes } = useShapes();
+  const boardRef = useRef<HTMLDivElement | null>(null);
 
   const offsetRef = useRef({ x: 0, y: 0 });
 
@@ -62,6 +63,59 @@ export default function Body() {
     window.addEventListener("mouseup", onMouseUpHandler);
   }, [draggingPolygon, setShapes, currentScale]);
 
+  const handleExportSVG = () => {
+    if (!boardRef.current) return;
+
+    const container = boardRef.current;
+    const { width, height } = container.getBoundingClientRect();
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", width.toString());
+    svg.setAttribute("height", height.toString());
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    svg.style.background = "transparent";
+
+    shapes.forEach((shape) => {
+      if (shape.type === "rectangle") {
+        const rect = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "rect"
+        );
+        rect.setAttribute("x", shape.x.toString());
+        rect.setAttribute("y", shape.y.toString());
+        rect.setAttribute("width", shape.width.toString());
+        rect.setAttribute("height", shape.height.toString());
+        rect.setAttribute("fill", shape.backgroundColor);
+        rect.setAttribute("stroke", shape.borderColor);
+        rect.setAttribute("stroke-width", "3");
+        svg.appendChild(rect);
+      } else if (shape.type === "circle") {
+        const circle = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "circle"
+        );
+        circle.setAttribute("cx", shape.x.toString()); // 중심 좌표 그대로 사용
+        circle.setAttribute("cy", shape.y.toString()); // 중심 좌표 그대로 사용
+        circle.setAttribute("r", (shape.size / 2).toString());
+        circle.setAttribute("fill", shape.backgroundColor);
+        circle.setAttribute("stroke", shape.borderColor);
+        circle.setAttribute("stroke-width", "3");
+        svg.appendChild(circle);
+      }
+    });
+
+    const serializer = new XMLSerializer();
+    const svgBlob = new Blob([serializer.serializeToString(svg)], {
+      type: "image/svg+xml",
+    });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(svgBlob);
+    link.download = "paper.svg";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <main className="size-full flex justify-center items-center bg-gray-100">
       <div className="flex h-full w-full flex-col items-center justify-center">
@@ -70,6 +124,7 @@ export default function Body() {
           style={{
             transform: `scale(${currentScale})`,
           }}
+          ref={boardRef}
         >
           {shapes.map((shape) =>
             shape.type === "circle" ? (
@@ -100,6 +155,9 @@ export default function Body() {
           )}
         </div>
       </div>
+      <button className="size-32 bg-black text-white" onClick={handleExportSVG}>
+        svg저장
+      </button>
     </main>
   );
 }

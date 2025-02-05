@@ -17,7 +17,7 @@ const ScaleProviderContext = createContext<DropdownContextType | undefined>(
 );
 
 export function ScaleProvider({ children }: { children: ReactNode }) {
-  const [currentScale, setCurrentScale] = useState<number>(0.93);
+  const [currentScale, setCurrentScale] = useState<number>(0.84);
 
   return (
     <ScaleProviderContext.Provider
